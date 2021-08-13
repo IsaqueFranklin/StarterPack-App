@@ -29,13 +29,16 @@ export default function App() {
                     <Stack.Screen name='Login' component={Login} options={{headerShown: false, title: 'Login'}} />
                     <Stack.Screen name='Signup' component={Signup} options={{
                         headerStyle: {
-                            backgroundColor: '#f5f5dc'
-                        }
+                            backgroundColor: 'black'
+                        },
+                        headerTintColor: '#fff',
                     }} />
                     <Stack.Screen name='ProfilePicture' component={ProfilePicture} options={{
+                        title: 'Profile image',
                         headerStyle: {
-                            backgroundColor: '#f5f5dc'
-                        }
+                            backgroundColor: 'black',
+                        },
+                        headerTintColor: '#fff',
                     }} />
                     <Stack.Screen name='StackNavigator' component={StackNavigator} options={{headerShown: false}} />
                 </Stack.Navigator>

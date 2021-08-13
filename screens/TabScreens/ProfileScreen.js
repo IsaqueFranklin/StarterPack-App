@@ -11,10 +11,10 @@ class ProfileScreen extends React.Component {
   
   render(){
     return (
-      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#f5f5dc'}}>
+      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
             <Text style={{fontSize:35, fontFamily: 'logo-font', marginVertical: 60, color: '#007aff'}}>Profile</Text>
             <TouchableOpacity onPress={()=> firebase.auth().signOut()}>
-              <Text>Logout</Text>
+              <Text style={{color: 'white'}} >Logout</Text>
             </TouchableOpacity>
       </View>
     );

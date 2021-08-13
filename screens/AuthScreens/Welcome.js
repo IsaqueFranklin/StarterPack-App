@@ -30,8 +30,8 @@ class Welcome extends React.Component {
   
   render(){
     return (
-      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize:35, fontFamily: 'logo-font', marginVertical: 60}}>NotInstagram</Text>
+      <View style={{flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{fontSize:35, fontFamily: 'logo-font', marginVertical: 60, color: '#007aff'}}>StarterPack</Text>
       </View>
     );
   }
