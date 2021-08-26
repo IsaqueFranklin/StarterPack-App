@@ -42,3 +42,16 @@ export const uploadPost = () => {
         }
     } 
  }
+
+export const getPosts = (numberOfPosts) => {
+    return async (dispatch, getState) => {
+        const posts = await db.collection('posts').orderBy('date','desc').limit(numberOfPosts).get()
+
+        let array = []
+        posts.forEach(post => {
+            array.push(post.data())
+        })
+
+        dispatch({type: 'GET_POSTS', payload:array})
+    }
+}

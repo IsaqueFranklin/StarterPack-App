@@ -25,6 +25,8 @@ const post = (state = {}, action) => {
             return {...state, title: action.payload}
         case 'UPDATE_WHATS':
             return {...state, whats: action.payload}
+        case 'GET_POSTS':
+            return {...state, feed: action.payload}
         default:
             return state
     }
