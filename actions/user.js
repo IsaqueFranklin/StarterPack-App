@@ -59,7 +59,7 @@ export function login(){
     }
 }
 
-export function getUser(uid){
+export const getUser = (uid) => {
     return async (dispatch) => {
         const userQuery = await db.collection('users').doc(uid).get()
         let user = userQuery.data()
@@ -70,7 +70,8 @@ export function getUser(uid){
         postQuery.forEach(function(response){
             posts.push(response.data())
         })
-        user.posts = orderBy(posts, 'data', 'desc')
+
+        user.posts = orderBy(posts, 'date', 'desc')
 
         dispatch({type: 'LOGIN', payload: user})
     }
