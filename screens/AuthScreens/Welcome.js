@@ -14,7 +14,7 @@ class Welcome extends React.Component {
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
-                getUser(user.uid)
+                this.props.getUser(user.uid)
                 if(this.props.user !== null){
                     this.props.navigation.navigate('StackNavigator')
                     this.props.navigation.reset({
