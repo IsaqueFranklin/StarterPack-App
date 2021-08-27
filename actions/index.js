@@ -1,5 +1,5 @@
-import * as firebase from 'firebase'
-import 'firebase/storage'
+import firebase from 'firebase'
+import storage from 'firebase/storage'
 import db from '../config/Firebase'
 import * as ImageManipulator from 'expo-image-manipulator';
 import uuid from 'uuid'

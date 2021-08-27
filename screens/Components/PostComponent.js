@@ -24,7 +24,7 @@ export default class PostComponent extends React.Component {
 
   render(){
     return (
-        <View style={{marginBottom:10}}>
+        <View style={{marginBottom:10, color: 'white'}}>
             <View style={{width:screenWidth, height:60, backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomColor: 'grey', borderBottomWidth: 0.07}}>
                     <Image source={{uri: this.props.item?.photo}} style={{width:40, height:40, borderRadius:20, margin:15}} />
                     <Text style={{fontWeight: '400', fontSize:16}}>{this.props.item?.username}</Text>
@@ -33,7 +33,7 @@ export default class PostComponent extends React.Component {
 
         {/*this is our bottom bar*/}
           
-          <View style={{flexDirection: 'row', marginTop:5}}>
+          <View style={{flexDirection: 'row', marginTop:5, color: 'white'}}>
                 <Text style={{fontWeight: 'bold', marginLeft:10}}>{this.props.item?.title} </Text>
                 <Text>{this.props.item?.description}</Text>
           </View>
