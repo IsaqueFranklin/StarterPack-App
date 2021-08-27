@@ -16,10 +16,10 @@ const screenHeight = Dimensions.get('window').height
 class HomeScreen extends React.Component {
 
   componentDidMount = () => {
-    this.props.getPosts(30);
-    /*if (this.props.user.uid !== undefined) {
+    this.props.getPosts(10);
+    if (this.props.user.uid !== undefined) {
       this.props.getUser(this.props.user.uid, 'GET_PROFILE')
-    }*/
+    }
   }
   
   render(){
@@ -29,17 +29,17 @@ class HomeScreen extends React.Component {
             <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 30}}>NotInstagram</Text>
             </View>
             <FlatList 
-            refreshing={true} 
+            refreshing={true}
             data={this.props.user}
             keyExtractor={(item) => JSON.stringify(item.uid)}
             renderItem={({item}) => (
               <PostComponent 
               item={item} 
-              user={this.props.user}
+              user={this.props.user} 
               navigation={this.props.navigation} 
-              />
+              profile={this.props.profile} />
             )}
-            style={{}} />
+            />
       </SafeAreaView>
     );
   }

@@ -15,12 +15,6 @@ export default class PostComponent extends React.Component {
         prop: PropTypes
     }
 
-    state = {
-        liked: undefined,
-        numLike: 0,
-        saved: undefined,
-    }
-
 
   render(){
     return (

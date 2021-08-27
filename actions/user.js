@@ -73,6 +73,10 @@ export const getUser = (uid) => {
 
         user.posts = orderBy(posts, 'date', 'desc')
 
-        dispatch({type: 'LOGIN', payload: user})
+        if(type == 'GET_PROFILE'){
+            dispatch({ type: 'GET_PROFILE', payload: user})
+        } else {
+            dispatch({type: 'LOGIN', payload: user})
+        }
     }
 }

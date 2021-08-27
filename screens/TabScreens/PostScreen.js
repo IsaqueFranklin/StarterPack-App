@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../../actions/user'
-import { updateDescription, updateTitle, updateWhats, uploadPost } from '../../actions/post'
+import { updateDescription, updateTitle, updateWhats, uploadPost, getPosts } from '../../actions/post'
 
 
 class PostScreen extends React.Component {
@@ -16,16 +16,16 @@ class PostScreen extends React.Component {
     this.props.navigation.navigate('Home')
     //alert('posted')
     this.props.uploadPost()
-    //this.props.getPosts()
+    this.props.getPosts()
   }
   
   render(){
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
 
-        <View style={{margin: 30, justifyContent: 'center', alignItems: 'center',}}>
+        <View style={{margin: 30, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontSize:25, color: 'white'}}>Share your project</Text>
-          <Text style={{fontSize:18, color: 'white', fontWeight: 300, alignItems: 'center'}}>Write a project and choose a price range</Text>
+          <Text style={{fontSize:18, color: 'white', alignItems: 'center'}}>Write a project and choose a price range</Text>
         </View>
 
           <TextInput 
@@ -64,7 +64,7 @@ class PostScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, updateDescription, updateTitle, updateWhats, uploadPost }, dispatch)
+    return bindActionCreators({ getUser, updateDescription, updateTitle, updateWhats, uploadPost, getPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {
