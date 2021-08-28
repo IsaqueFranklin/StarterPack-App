@@ -17,9 +17,6 @@ class HomeScreen extends React.Component {
 
   componentDidMount = () => {
     this.props.getPosts(10);
-    if (this.props.user.uid !== undefined) {
-      this.props.getUser(this.props.user.uid, 'GET_PROFILE')
-    }
   }
   
   render(){
@@ -36,8 +33,7 @@ class HomeScreen extends React.Component {
               <PostComponent 
               item={item} 
               user={this.props.user} 
-              navigation={this.props.navigation} 
-              profile={this.props.profile} />
+              navigation={this.props.navigation} />
             )}
             />
       </SafeAreaView>
