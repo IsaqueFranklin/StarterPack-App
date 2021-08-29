@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Container } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Container, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -17,6 +16,24 @@ class PostScreen extends React.Component {
     //alert('posted')
     this.props.uploadPost()
     this.props.getPosts()
+  }
+
+  onSubmit = () => {
+    if(this.props.post.title == undefined || this.props.post.title <= 4) {
+      alert('Título inexistente ou muito pequeno')
+    }
+
+    if(this.props.post.description == undefined || this.props.post.description <= 10) {
+      alert('Descrição inexistente ou muito pequena')
+    }
+
+    if(this.props.post.whats == undefined || this.props.post.whats <= 8) {
+      alert('Número muito pequeno ou nulo.')
+    }
+
+    else {
+      this.uploadPost()
+    }
   }
   
   render(){
@@ -44,6 +61,7 @@ class PostScreen extends React.Component {
           style={{backgroundColor: 'white', width: '85%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10, height: 200}}
           />
 
+          <KeyboardAvoidingView>
           <TextInput 
           placeholder={'Type in your whatsapp here :)'} 
           placeholderTextColor={'grey'}
@@ -51,9 +69,10 @@ class PostScreen extends React.Component {
           value={this.props.post.whats}
           style={{backgroundColor: 'white', width: '85%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
           />
+          </KeyboardAvoidingView>
 
               <TouchableOpacity style={{margin:22, flexDirection: 'row', paddingHorizontal: 30, paddingVertical: 10, borderWidth: 0.5, borderColor: 'white', borderRadius: 8}}
-              onPress={()=> this.uploadPost()}>
+              onPress={()=> this.onSubmit()}>
                 <Text style={{color: 'white', fontWeight: 'bold', fontSize:16, marginHorizontal:5, bottom:0}}>Post</Text>
                   <FontAwesome name='check' color={'white'} size={20} style={{top:2}} />
               </TouchableOpacity>

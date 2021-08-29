@@ -23,7 +23,7 @@ class HomeScreen extends React.Component {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
             <View style={{height:50, width:screenWidth,borderBottomColor: 'rgba(0,0,0,0.1)', borderBottomWidth:0.5, justifyContent: 'space-between', flexDirection: 'row'}}>
-            <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 30}}>NotInstagram</Text>
+            <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 30}}>StarterPack</Text>
             </View>
             <FlatList 
             refreshing={true}
