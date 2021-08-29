@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Container, KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Container, KeyboardAvoidingView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -42,7 +43,6 @@ class PostScreen extends React.Component {
 
         <View style={{margin: 30, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontSize:25, color: 'white'}}>Share your project</Text>
-          <Text style={{fontSize:18, color: 'white', alignItems: 'center'}}>Write a project and choose a price range</Text>
         </View>
 
           <TextInput 
@@ -61,7 +61,6 @@ class PostScreen extends React.Component {
           style={{backgroundColor: 'white', width: '85%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10, height: 200}}
           />
 
-          <KeyboardAvoidingView>
           <TextInput 
           placeholder={'Type in your whatsapp here :)'} 
           placeholderTextColor={'grey'}
@@ -69,9 +68,8 @@ class PostScreen extends React.Component {
           value={this.props.post.whats}
           style={{backgroundColor: 'white', width: '85%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
           />
-          </KeyboardAvoidingView>
 
-              <TouchableOpacity style={{margin:22, flexDirection: 'row', paddingHorizontal: 30, paddingVertical: 10, borderWidth: 0.5, borderColor: 'white', borderRadius: 8}}
+              <TouchableOpacity style={{marginTop: 50, margin:22, flexDirection: 'row', paddingHorizontal: 30, paddingVertical: 10, borderWidth: 0.5, borderColor: 'white', borderRadius: 8}}
               onPress={()=> this.onSubmit()}>
                 <Text style={{color: 'white', fontWeight: 'bold', fontSize:16, marginHorizontal:5, bottom:0}}>Post</Text>
                   <FontAwesome name='check' color={'white'} size={20} style={{top:2}} />
