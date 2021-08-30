@@ -8,12 +8,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-picker/picker": "github:react-native-picker/picker",
     "@react-navigation/material-bottom-tabs": "^6.0.3",
     "@react-navigation/stack": "^6.0.4",
     "@use-expo/font": "^2.0.0",
     "expo": "~42.0.1",
     "expo-image-manipulator": "^9.2.2",
     "expo-image-picker": "^10.2.2",
+    "expo-location": "~12.1.2",
     "expo-status-bar": "~1.0.4",
     "firebase": "^8.9.1",
     "install": "^0.13.0",
@@ -25,6 +27,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-ckeditor5": "^1.0.8",
     "react-native-keyboard-aware-view": "^0.0.14",
+    "react-native-picker-select": "^8.0.4",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-web": "~0.13.12",
     "react-native-wysiwyg": "^0.0.1",

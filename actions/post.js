@@ -15,6 +15,14 @@ export const updateWhats = (input) => {
     return {type: 'UPDATE_WHATS', payload: input}
 }
 
+export const updateCategory = (input) => {
+    return {type: 'UPDATE_CATEGORY', payload: input}
+}
+
+export const updateLocation = (input) => {
+    return {type: 'UPDATE_LOCATION', payload: input}
+}
+
 export const uploadPost = () => {
     return async ( dispatch, getState )=>{
         try {
@@ -27,12 +35,15 @@ export const uploadPost = () => {
                 photo: user.photo,
                 username: user.username,
                 date: new Date().getTime(),
+                //location: post.location,
                 savedBy: [],
                 upvotes:[],
                 comments:[],
                 description: post.description,
                 title: post.title,
                 whats: post.whats,
+                //category: post.category,
+                active: true,
             }      
             await db.collection('posts').doc(id).set(upload)
             await db.collection('users').doc(user.uid).update

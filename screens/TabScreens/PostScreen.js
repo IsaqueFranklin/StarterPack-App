@@ -1,17 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Container, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import * as Location from 'expo-location'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../../actions/user'
-import { updateDescription, updateTitle, updateWhats, uploadPost, getPosts } from '../../actions/post'
+import { updateDescription, updateTitle, updateWhats, updateCategory, updateLocation, uploadPost, getPosts } from '../../actions/post'
 
 
 class PostScreen extends React.Component {
 
-
+  /*componentDidMount = () => {
+    (async () => {
+          const { status } = await Location.requestForegroundPermissionsAsync();
+          if( status === 'granted'){
+            let location = await Location.getCurrentPositionAsync({});
+            this.props.updateLocation(location);
+          }
+      })
+  }*/
+  
   uploadPost = () => {
     this.props.navigation.navigate('Home')
     //alert('posted')
@@ -81,7 +91,7 @@ class PostScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, updateDescription, updateTitle, updateWhats, uploadPost, getPosts }, dispatch)
+    return bindActionCreators({ getUser, updateDescription, updateTitle, updateWhats, updateCategory, updateLocation, uploadPost, getPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {
