@@ -46,6 +46,7 @@ export const uploadPost = () => {
                 description: post.description,
                 title: post.title,
                 whats: post.whats,
+                price: post.price,
                 //category: post.category,
                 active: true,
             }      

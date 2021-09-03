@@ -30,6 +30,7 @@ export default class PostComponent extends React.Component {
           <View style={{margin: 10, color: 'white', width: screenWidth*.7}}>
                 <Text style={{fontWeight: 'bold', marginLeft:10, marginBottom: 10, color: 'white', fontSize:18}}>{this.props.item?.title}</Text>
                 <Text style={{color: 'white', marginLeft:10}}>{this.props.item?.description}</Text>
+                <Text style={{color: 'white', marginLeft:10}}>{this.props.item?.price}</Text>
                 <TouchableOpacity style={{borderRadius: 5, borderWidth: 0.5, borderColor: 'white', width: 80, height: 30, justifyContent: 'center', alignItems: 'center', margin: 10, marginTop: 20}}>
                     <Text style={{color: 'white'}}>Ver mais</Text>
                 </TouchableOpacity>
