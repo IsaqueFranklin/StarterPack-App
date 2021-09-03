@@ -72,6 +72,14 @@ class PostScreen extends React.Component {
           />
 
           <TextInput 
+          placeholder={'Willing to pay for the project:'} 
+          placeholderTextColor={'grey'}
+          onChangeText={input=> this.props.updatePrice(input)}
+          value={this.props.post.price}
+          style={{backgroundColor: 'white', width: '85%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
+          />
+
+          <TextInput 
           placeholder={'Type in your whatsapp here :)'} 
           placeholderTextColor={'grey'}
           onChangeText={input=> this.props.updateWhats(input)}

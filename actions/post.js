@@ -15,6 +15,10 @@ export const updateWhats = (input) => {
     return {type: 'UPDATE_WHATS', payload: input}
 }
 
+export const updatePrice = (input) => {
+    return {type: 'UPDATE_PRICE', payload: input}
+}
+
 export const updateCategory = (input) => {
     return {type: 'UPDATE_CATEGORY', payload: input}
 }
