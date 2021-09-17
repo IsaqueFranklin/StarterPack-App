@@ -13,6 +13,12 @@ const screenHeight = Dimensions.get('window').height
 
 class ProfileScreen extends React.Component {
 
+  componentDidMount = () => {
+    const { params } = this.props.route
+    if (params !== undefined) {
+      this.props.getUser(params, 'GET_PROFILE')
+    }
+  }
   
   render(){
     return (

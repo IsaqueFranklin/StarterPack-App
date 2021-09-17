@@ -27,6 +27,41 @@ export const updateLocation = (input) => {
     return {type: 'UPDATE_LOCATION', payload: input}
 }
 
+export const updateNextPhoto = (input) => {
+    return async (dispatch, getState) => {
+        try {
+            let array = []
+            const { post } = getState()
+
+            post.photos?.forEach(photo => {
+                array.push(photo)
+            })
+            array.push(input)
+
+            dispatch({type: 'UPDATE_POST_NEXT_PHOTO', payload: array})
+        } catch(e){
+            alert(e)
+        }
+    }
+}
+
+export const removeImage = (photoToRemove) => {
+    return async (dispatch, getState) => {
+        try {
+            let array = []
+            const { post } = getState()
+            post.photos?.forEach(photo => {
+                array.push(photo)
+            })
+            array.splice(photoToRemove, 1)
+
+            dispatch({type: 'UPDATE_POST_NEXT_PHOTO', payload: array})
+        } catch(e){
+            alert(e)
+        }
+    }
+}
+
 export const uploadPost = () => {
     return async ( dispatch, getState )=>{
         try {
@@ -37,18 +72,14 @@ export const uploadPost = () => {
                 id:id,
                 uid: user.uid,
                 photo: user.photo,
+                photos: post.photos,
                 username: user.username,
                 date: new Date().getTime(),
-                //location: post.location,
                 savedBy: [],
-                upvotes:[],
+                likes:[],
                 comments:[],
                 description: post.description,
-                title: post.title,
-                whats: post.whats,
-                price: post.price,
                 //category: post.category,
-                active: true,
             }      
             await db.collection('posts').doc(id).set(upload)
             await db.collection('users').doc(user.uid).update
