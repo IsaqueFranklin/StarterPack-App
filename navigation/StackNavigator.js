@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
 import PostCheckout from '../screens/TabScreens/upload/PostCheckout'
 import TextCheckout from '../screens/TabScreens/upload/TextCheckout'
+import ProfileScreen from '../screens/TabScreens/ProfileScreen'
+import OnePost from '../screens/TabScreens/OnePost'
 
 import { uploadPost, uploadTextPost, getPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
@@ -35,6 +37,21 @@ class MyStack extends React.Component{
     return (
       <Stack.Navigator>
         <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}} />
+        <Stack.Screen name="OnePost" component={OnePost} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#1a1a1a', borderWidth: 0
+          },
+          headerTintColor: '#fff',
+          cardStyle: { backgroundColor: '#1a1a1a' }
+        }} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#1a1a1a', borderWidth: 0
+          },
+          headerTintColor: '#fff',
+        }} />
         <Stack.Screen name="PostCheckout" component={PostCheckout} 
         options={{
           headerShown: true, 

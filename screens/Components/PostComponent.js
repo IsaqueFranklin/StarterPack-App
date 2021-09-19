@@ -58,9 +58,13 @@ export default class PostComponent extends React.Component {
   render(){
     return (
         <View style={{marginBottom:10, color: 'white', justifyContent: 'center', borderBottomColor:'black', borderBottomWidth:10}}>
-            <View style={{margin: 10, width: screenWidth*.8, marginBottom: 20, flexDirection: 'row', alignItems: 'center', borderBottomColor: 'grey', borderBottomWidth: 0.07}}>
+            <View style={{backgroundColor: '#1a1a1a', margin: 10, width: screenWidth*.8, marginBottom: 20, flexDirection: 'row', alignItems: 'center', borderBottomColor: 'grey', borderBottomWidth: 0.07}}>
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('ProfileScreen', this.props.item.uid)} 
+                style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row',}}>
                     <Image source={{uri: this.props.item?.photo}} style={{width:40, height:40, borderRadius:20, marginLeft:0}} />
-                    <Text style={{fontWeight: '400', fontSize:16, color: 'white', marginHorizontal: 20, }}>{this.props.item?.username}</Text>   
+                    <Text style={{fontWeight: '400', fontSize:16, color: 'white', marginHorizontal: 20, }}>{this.props.item?.username}</Text>
+            </TouchableOpacity>   
             </View>
             <View>
               <ScrollView 
