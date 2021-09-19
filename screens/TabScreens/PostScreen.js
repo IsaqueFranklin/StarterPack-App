@@ -9,7 +9,7 @@ import { uploadPhoto } from '../../actions/index'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../../actions/user'
-import { updateNextPhoto, removeImage } from '../../actions/post'
+import { updateNextPhoto, removeImage, updateDescription } from '../../actions/post'
 
 
 const screenWidth = Dimensions.get('window').width
@@ -59,6 +59,10 @@ class PostScreen extends React.Component {
     this.props.navigation.navigate('PostCheckout')
   }
 
+  uploadTextPost = () => {
+    this.props.navigation.navigate('TextCheckout')
+  }
+
   /*onSubmit = () => {
     if(this.props.post.title == undefined || this.props.post.title <= 4) {
       alert('Título inexistente ou muito pequeno')
@@ -86,6 +90,12 @@ class PostScreen extends React.Component {
                 onPress={() => this.uploadPost()}>
                   <Text style={{margin:10, fontWeight: 'bold', fontSize:22, color:'#007aff'}}>Upload</Text>
               </TouchableOpacity>
+          </View>
+
+          <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
+            <TouchableOpacity onPress={() => this.uploadTextPost()} style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'white', paddingHorizontal: 20, paddingVertical: 8}}>
+              <Text style={{color: 'white'}} >Write a post with no photo instead</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{width:screenWidth, height:360,}}>
@@ -134,7 +144,7 @@ class PostScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, uploadPhoto, updateNextPhoto, removeImage }, dispatch)
+    return bindActionCreators({ getUser, uploadPhoto, updateNextPhoto, removeImage, updateDescription }, dispatch)
 }
 
 const mapStateToProps = (state) => {

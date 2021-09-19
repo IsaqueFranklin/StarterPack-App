@@ -27,6 +27,11 @@ class HomeScreen extends React.Component {
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
             <View style={{height:50, width:screenWidth,borderBottomColor: 'rgba(0,0,0,0.1)', borderBottomWidth:0.5, justifyContent: 'space-between', flexDirection: 'row'}}>
             <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 30}}>StarterPack</Text>
+            <TouchableOpacity  style={{width:screenWidth, justifyContent: 'center', alignItems: 'center', marginRight: 100}}>
+                    <View style={{width:65, height:65, justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{color:'white', fontSize:40}}>+</Text>
+                    </View>
+              </TouchableOpacity>
             </View>
             <FlatList 
             refreshing={true}

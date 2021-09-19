@@ -5,8 +5,9 @@ import { FontAwesome } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
 import PostCheckout from '../screens/TabScreens/upload/PostCheckout'
+import TextCheckout from '../screens/TabScreens/upload/TextCheckout'
 
-import { uploadPost, getPosts } from '../actions/post'
+import { uploadPost, uploadTextPost, getPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../actions/user'
@@ -20,6 +21,13 @@ class MyStack extends React.Component{
     this.props.navigation.navigate('Home')
     //alert('posted')
     this.props.uploadPost()
+    this.props.getPosts()
+  }
+
+  uploadTextPost = () =>{
+    this.props.navigation.navigate('Home')
+    //alert('posted')
+    this.props.uploadTextPost()
     this.props.getPosts()
   }
 
@@ -43,13 +51,29 @@ class MyStack extends React.Component{
               </TouchableOpacity>
           )
           }} />
+          <Stack.Screen name="TextCheckout" component={TextCheckout} 
+        options={{
+          headerShown: true, 
+          headerTitle: 'Write a tweet',
+          headerStyle: {
+            backgroundColor: '#1a1a1a',
+          },
+          headerTintColor: '#fff',
+          headerRight: () => (
+              <TouchableOpacity style={{margin:22, flexDirection: 'row'}}
+              onPress={()=> this.uploadTextPost()}>
+                <Text style={{color: 'blue', fontWeight: 'bold', fontSize:22, marginHorizontal:5, bottom:0}}>Post</Text>
+                  <FontAwesome name='check' color={'blue'} size={25} style={{top:2}} />
+              </TouchableOpacity>
+          )
+          }} />
       </Stack.Navigator>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getUser, uploadPost, getPosts }, dispatch)
+  return bindActionCreators({ getUser, uploadPost, uploadTextPost, getPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {

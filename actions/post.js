@@ -90,6 +90,33 @@ export const uploadPost = () => {
     } 
  }
 
+ export const uploadTextPost = () => {
+    return async ( dispatch, getState )=>{
+        try {
+            const { post, user } = getState()
+            
+            const id = uuid.v4()
+            const upload = {
+                id:id,
+                uid: user.uid,
+                photo: user.photo,
+                username: user.username,
+                date: new Date().getTime(),
+                savedBy: [],
+                likes:[],
+                comments:[],
+                description: post.description,
+                //category: post.category,
+            }      
+            await db.collection('posts').doc(id).set(upload)
+            await db.collection('users').doc(user.uid).update
+            ({posts: firebase.firestore.FieldValue.arrayUnion(id)})
+         } catch (e) {
+            alert(e)
+        }
+    } 
+ }
+
  export const getPosts = (numberOfPosts) => {
     return async (dispatch, getState) => {
 
