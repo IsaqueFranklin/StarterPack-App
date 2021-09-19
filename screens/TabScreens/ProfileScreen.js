@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { getUser } from '../../actions/user'
+import { getUser, followUser, unFollowUser } from '../../actions/user'
 import { getPost, likePost, unLikePost, savePost, unSavePost } from '../../actions/post'
 import PostComponent from '../Components/PostComponent'
 
@@ -20,6 +20,14 @@ class ProfileScreen extends React.Component {
     if (params !== undefined) {
       this.props.getUser(params, 'GET_PROFILE')
     }
+  }
+
+  follow = () => {
+    this.props.followUser(this.props.profile.uid)
+  }
+
+  unFollow = () => {
+    this.props.unFollowUser(this.props.profile.uid);
   }
 
   goToPost = (post) => {
@@ -76,13 +84,13 @@ class ProfileScreen extends React.Component {
                 </Text>
               </View>
             </View>
-            <Text style={{fontSize: 16, color: 'white', marginTop: 20, marginBottom: 20}}>
+            <Text style={{maxWidth: '65%', fontSize: 16, color: 'white', marginTop: 20, marginBottom: 20}}>
                 {this.props.user?.bio}
             </Text>
             <View style={{borderBottomColor:'black', borderBottomWidth:10, height:100, width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
                 <TouchableOpacity 
                 onPress={() => this.follow()}
-                style={{width: '60%', height: 35, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', borderWidth:1, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125}}>
+                style={{width: '65%', height: 35, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', borderWidth:1, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125}}>
                     <Text style={{margin:5, color: 'white'}}>Edit profile</Text>
                 </TouchableOpacity>
             </View>
@@ -153,19 +161,19 @@ class ProfileScreen extends React.Component {
                   <TouchableOpacity 
                   onPress={() => this.unFollow()}
                   style={{flexDirection: 'row', width:screenWidth*.45, height:35, justifyContent: 'center',alignItems: 'center', borderWidth:0.5, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125}}>
-                      <Text style={{fontWeight: 'bold', fontSize:18, margin:5}}>Following</Text>
-                      <Image source={require('../../assets/images/check.png')} style={{width:20, height:18}} />
+                      <Text style={{color: 'white', margin:5}}>Following</Text>
+                      <Image source={require('../../assets/images/check.png')} style={{width:15, height:15, marginTop:2}} />
                   </TouchableOpacity>
 
                   <TouchableOpacity style={{width:screenWidth*.45, height:35, justifyContent: 'center',alignItems: 'center', borderWidth:0.5, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125}}>
-                      <Text style={{fontWeight: 'bold', fontSize:18}}>Message</Text>
+                      <Text style={{color: 'white'}}>Message</Text>
                   </TouchableOpacity>
                 </View>
               :
                 <View style={{borderBottomColor:'black', borderBottomWidth:10,height:80, width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
                   <TouchableOpacity 
                   onPress={() => this.follow()}
-                  style={{width: '60%', height: 35, backgroundColor: '#007aff', justifyContent: 'center', alignItems: 'center', borderRadius:8}}>
+                  style={{width: '65%', height: 35, backgroundColor: '#007aff', justifyContent: 'center', alignItems: 'center', borderRadius:8}}>
                       <Text style={{fontWeight: 'bold', fontSize:18, margin:5, color: 'white'}}>Follow</Text>
                   </TouchableOpacity>
                 </View>
@@ -200,7 +208,7 @@ class ProfileScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, likePost, unLikePost, savePost, unSavePost, getPost }, dispatch)
+    return bindActionCreators({ getUser, followUser, unFollowUser, likePost, unLikePost, savePost, unSavePost, getPost }, dispatch)
 }
 
 const mapStateToProps = (state) => {

@@ -83,3 +83,45 @@ export const getUser = (uid, type) => {
         }
     }
 }
+
+export const followUser = (userToFollow) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid } = getState().user
+
+            await db.collection('users').doc(uid).update({
+                following: firebase.firestore.FieldValue.arrayUnion(userToFollow)
+            })
+
+            await db.collection('users').doc(userToFollow).update({
+                followers: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+
+            dispatch(getUser(userToFollow, 'GET_PROFILE'))
+
+        } catch(e){
+            alert(e)
+        }
+    }
+}
+
+export const unFollowUser = (userToFollow) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid } = getState().user
+        
+            await db.collection('users').doc(uid).update({
+                following: firebase.firestore.FieldValue.arrayRemove(userToFollow)
+            })
+
+            await db.collection('users').doc(userToFollow).update({
+                followers: firebase.firestore.FieldValue.arrayRemove(uid)
+            })
+
+            dispatch(getUser(userToFollow, 'GET_PROFILE'))
+
+        } catch(e) {
+            alert(e)
+        }
+    }
+}
