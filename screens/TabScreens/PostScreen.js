@@ -92,7 +92,7 @@ class PostScreen extends React.Component {
               </TouchableOpacity>
           </View>
 
-          <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
+          <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
             <TouchableOpacity onPress={() => this.uploadTextPost()} style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'white', paddingHorizontal: 20, paddingVertical: 8}}>
               <Text style={{color: 'white'}} >Write a post with no photo instead</Text>
             </TouchableOpacity>

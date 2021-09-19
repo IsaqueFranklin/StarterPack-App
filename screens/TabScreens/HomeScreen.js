@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../../actions/user'
-import { getPosts } from '../../actions/post'
+import { getPosts, likePost, unLikePost, savePost, unSavePost } from '../../actions/post'
 
 
 import PostComponent from '../Components/PostComponent'
@@ -40,7 +40,11 @@ class HomeScreen extends React.Component {
             renderItem={({item}) => (
               <PostComponent 
               item={item} 
-              user={this.props.user} 
+              user={this.props.user}
+              likePost={(item) => this.props.likePost(item)} 
+              unLikePost={(item) => this.props.unLikePost(item)}
+              savePost={(item) => this.props.savePost(item)}
+              unSavePost={(item) => this.props.unSavePost(item)}
               navigation={this.props.navigation}
               profile={this.props.profile} />
             )}
@@ -52,7 +56,7 @@ class HomeScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, getPosts }, dispatch)
+    return bindActionCreators({ getUser, getPosts, likePost, unLikePost, savePost, unSavePost }, dispatch)
 }
 
 const mapStateToProps = (state) => {

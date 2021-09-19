@@ -130,3 +130,85 @@ export const uploadPost = () => {
         dispatch({type: 'GET_POSTS', payload:array})
     }
 }
+
+export const getSavedPosts = () => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid } = getState().user
+            const posts = await db.collection('posts').orderBy('date', 'desc').where('savedBy', 'array-contains', uid).get()
+
+            let array = []
+            posts.forEach(post => {
+                array.push(post.data())
+            })
+
+            dispatch({type: 'GET_SAVED_POSTS', payload: array})
+        } catch(e){
+            console.log(e)
+        }
+    }
+}
+
+export const likePost = (post) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid, username, photo } = getState().user
+
+            db.collection('posts').doc(post.id).update({
+                likes: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+        } catch (err) {
+            alert(err)
+        }
+    }
+}
+
+export const unLikePost = (post) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid, username, photo } = getState().user
+
+            db.collection('posts').doc(post.id).update({
+                likes: firebase.firestore.FieldValue.arrayRemove(uid)
+            })
+        } catch (err) {
+            alert(err)
+        }
+    }
+}
+
+export const savePost = (post) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid } = getState().user
+
+            db.collection('posts').doc(post.id).update({
+                savedBy: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+            db.collection('users').doc(uid).update({
+                savedPosts: firebase.firestore.FieldValue.arrayUnion(post.id)
+            })
+
+        } catch (err) {
+            alert(err)
+        }
+    }
+}
+
+export const unSavePost = (post) => {
+    return async (dispatch, getState) => {
+        try {
+            const { uid } = getState().user
+
+            db.collection('posts').doc(post.id).update({
+                savedBy: firebase.firestore.FieldValue.arrayRemove(uid)
+            })
+            db.collection('users').doc(uid).update({
+                savedPosts: firebase.firestore.FieldValue.arrayRemove(post.id)
+            })
+
+        } catch(err) {
+            alert(err)
+        }
+    }
+}

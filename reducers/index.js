@@ -33,14 +33,12 @@ const post = (state = {}, action) => {
             return { ...state, photos: action.payload}
         case 'UPDATE_DESCRIPTION':
             return {...state, description: action.payload}
-        case 'UPDATE_TITLE':
-            return {...state, title: action.payload}
-        case 'UPDATE_WHATS':
-            return {...state, whats: action.payload}
-        case 'UPDATE_CATEGORY':
-            return {...state, category: action.payload}
         case 'GET_POSTS':
             return {...state, feed: action.payload}
+        case 'GET_POST':
+            return {...state, onePost: action.payload}
+        case 'GET_SAVED_POSTS':
+            return {...state, saved_feed: action.payload}
         default:
             return state
     }
