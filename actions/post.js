@@ -117,6 +117,50 @@ export const uploadPost = () => {
     } 
  }
 
+export const uploadComment = (item) => {
+    return async ( dispatch, getState )=>{
+        try {
+            const { post, user } = getState()
+
+            const id = uuid.v4();
+
+            await db.collection('posts').doc(item.id).get().then(doc => {
+                if(doc.exists){
+                  const previousComments = doc.data().comments
+                  const comment = {
+                    postedBy: { id: id, uid: user.uid, username: user.username, photo: user.photo },
+                    created: new Date().getTime(),
+                    likes: [],
+                    replies: [],
+                    comment: post.description,
+                  }
+                  const updatedComments = [...previousComments, comment]
+                  db.collection('posts').doc(item.id).update({ comments: updatedComments })
+                }
+            })
+
+
+            await db.collection('users').doc(item.uid).get().then(doc => {
+                if(doc.exists){
+                  const previous = doc.data().notifications
+                  const comment = {
+                    by: { id: id, uid: user.uid, username: user.username, photo: user.photo },
+                    created: new Date().getTime(),
+                    postId: item.id,
+                    comment: post.description,
+                    visto: false,
+                  }
+                  const updatedComments = [...previous, comment]
+                  db.collection('users').doc(item.uid).update({ notifications: updatedComments })
+                }
+            })
+            
+        } catch (e) {
+            alert(e)
+        }
+    }
+}
+
  export const getPosts = (numberOfPosts) => {
     return async (dispatch, getState) => {
 
