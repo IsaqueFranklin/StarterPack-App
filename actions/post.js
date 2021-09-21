@@ -128,7 +128,8 @@ export const uploadComment = (item) => {
                 if(doc.exists){
                   const previousComments = doc.data().comments
                   const comment = {
-                    postedBy: { id: id, uid: user.uid, username: user.username, photo: user.photo },
+                    postedBy: { uid: user.uid, username: user.username, photo: user.photo },
+                    id: id,
                     created: new Date().getTime(),
                     likes: [],
                     replies: [],
@@ -144,7 +145,8 @@ export const uploadComment = (item) => {
                 if(doc.exists){
                   const previous = doc.data().notifications
                   const comment = {
-                    by: { id: id, uid: user.uid, username: user.username, photo: user.photo },
+                    by: { uid: user.uid, username: user.username, photo: user.photo },
+                    id: id,
                     created: new Date().getTime(),
                     postId: item.id,
                     comment: post.description,
@@ -257,10 +259,24 @@ export const unSavePost = (post) => {
     }
 }
 
-export const getPost = (post) => {
+/*export const getPost = (post) => {
     return async (dispatch, getState) => {
         try {
             dispatch({type: 'GET_POST', payload: post})
+        } catch(e){
+            alert(e)
+        }
+    }
+}*/
+
+export const getPost = (item) => {
+    return async (dispatch, getState) => {
+        try{
+            db.collection('posts').where('id', '==', item.id).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  dispatch({type: 'GET_POST', payload: {...doc.data(), id: doc.id}});
+                });
+            })
         } catch(e){
             alert(e)
         }

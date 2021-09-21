@@ -36,7 +36,8 @@ export function signup(){
                     photo: photo,
                     savedPosts: [],
                     followers: [],
-                    following: []
+                    following: [],
+                    notifications: [],
                 }
 
                 await db.collection('users').doc(response.user.uid).set(user)
