@@ -123,7 +123,7 @@ class ProfileScreen extends React.Component {
     <ScrollView style={{flex: 1, backgroundColor: '#1a1a1a'}}>
     <SafeAreaView style={{flex: 1, alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
           <Image source={{uri: this.props.profile?.photo}} style={{width:screenWidth*.3, height:screenWidth*.3, borderRadius: screenWidth*.15}} />
-          <Text style={{fontSize:18, marginVertical: 20, color: 'white'}}>{this.props.user?.username}</Text>
+          <Text style={{fontSize:18, marginVertical: 20, color: 'white'}}>{this.props.profile?.username}</Text>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View style={{justifyContent: 'center', alignItems: 'center', margin:8}}>
               <Text style={{fontSize:20, fontWeight: 'bold', color: 'white'}}>

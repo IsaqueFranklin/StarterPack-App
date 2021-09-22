@@ -5,7 +5,7 @@ import PostComponent from '../Components/PostComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser, followUser, unFollowUser } from '../../actions/user'
-import { likeCPost, unLikePost, savePost, unSavePost, updateDescription, uploadComment, getPost } from '../../actions/post'
+import { likePost, unLikePost, savePost, unSavePost, updateDescription, uploadComment, getPost } from '../../actions/post'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import PropTypes from 'prop-types';
 
@@ -82,7 +82,7 @@ export class OnePost extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, unLikePost, savePost, unSavePost, updateDescription, uploadComment, getPost }, dispatch)
+    return bindActionCreators({ getUser, likePost, unLikePost, savePost, unSavePost, updateDescription, uploadComment, getPost }, dispatch)
 }
 
 const mapStateToProps = (state) => {

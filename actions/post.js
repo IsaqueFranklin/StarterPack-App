@@ -78,6 +78,7 @@ export const uploadPost = () => {
                 savedBy: [],
                 likes:[],
                 comments:[],
+                whosFeed: user.followers,
                 description: post.description,
                 //category: post.category,
             }      

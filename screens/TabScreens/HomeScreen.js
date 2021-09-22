@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../../actions/user'
-import { getPosts, likePost, unLikePost, savePost, unSavePost } from '../../actions/post'
+import { getPosts, likePost, unLikePost, savePost, unSavePost, getPost } from '../../actions/post'
 
 
 import PostComponent from '../Components/PostComponent'
@@ -16,7 +16,7 @@ const screenHeight = Dimensions.get('window').height
 class HomeScreen extends React.Component {
 
   componentDidMount = () => {
-    this.props.getPosts(10);
+    this.props.getPosts(50);
     if (this.props.user.uid !== undefined) {
       this.props.getUser(this.props.user.uid, 'GET_PROFILE')
     }
@@ -45,6 +45,7 @@ class HomeScreen extends React.Component {
               unLikePost={(item) => this.props.unLikePost(item)}
               savePost={(item) => this.props.savePost(item)}
               unSavePost={(item) => this.props.unSavePost(item)}
+              getPost={(item) => this.props.getPost(item)}
               navigation={this.props.navigation}
               profile={this.props.profile} />
             )}
@@ -56,7 +57,7 @@ class HomeScreen extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, getPosts, likePost, unLikePost, savePost, unSavePost }, dispatch)
+    return bindActionCreators({ getUser, getPosts, likePost, unLikePost, savePost, unSavePost, getPost }, dispatch)
 }
 
 const mapStateToProps = (state) => {

@@ -21,6 +21,11 @@ export default class PostComponent extends React.Component {
       saved: undefined,
   }
 
+  goToPost = (post) => {
+    this.props.getPost(post)
+    this.props.navigation.navigate('OnePost')
+  }
+
   likePost = () => {
     if((this.props.item?.likes.includes(this.props.user.uid)) || this.state.liked == true){
       if(this.state.liked == false){
@@ -101,7 +106,10 @@ export default class PostComponent extends React.Component {
                                 <Image source={require('../../assets/images/heart.png')} style={{width: 20, height:20, margin:10}} />
                         }
                     </TouchableOpacity>
-                    <Image source={require('../../assets/images/comment.png')} style={{width: 20, height:20, margin:10}} />
+                    <TouchableOpacity
+                    onPress={() => this.goToPost(this.props.item)}>
+                        <Image source={require('../../assets/images/comment.png')} style={{width: 20, height:20, margin:10}} />
+                    </TouchableOpacity>
                     <Image source={require('../../assets/images/share.png')} style={{width: 20, height:20, margin:10}} />
               </View>
               <TouchableOpacity onPress={() => this.savePost()}>
