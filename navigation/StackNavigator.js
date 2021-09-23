@@ -9,7 +9,7 @@ import TextCheckout from '../screens/TabScreens/upload/TextCheckout'
 import ProfileScreen from '../screens/TabScreens/ProfileScreen'
 import OnePost from '../screens/TabScreens/OnePost'
 
-import { uploadPost, uploadTextPost, getPosts } from '../actions/post'
+import { uploadPost, uploadTextPost, getPosts, getFeedPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../actions/user'
@@ -23,14 +23,14 @@ class MyStack extends React.Component{
     this.props.navigation.navigate('Home')
     //alert('posted')
     this.props.uploadPost()
-    this.props.getPosts()
+    this.props.getFeedPosts()
   }
 
   uploadTextPost = () =>{
     this.props.navigation.navigate('Home')
     //alert('posted')
     this.props.uploadTextPost()
-    this.props.getPosts()
+    this.props.getFeedPosts()
   }
 
     render() {
@@ -90,7 +90,7 @@ class MyStack extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getUser, uploadPost, uploadTextPost, getPosts }, dispatch)
+  return bindActionCreators({ getUser, uploadPost, uploadTextPost, getPosts, getFeedPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {

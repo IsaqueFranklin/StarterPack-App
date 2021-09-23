@@ -106,6 +106,7 @@ export const uploadPost = () => {
                 savedBy: [],
                 likes:[],
                 comments:[],
+                whosFeed: user.followers,
                 description: post.description,
                 //category: post.category,
             }      
@@ -175,6 +176,22 @@ export const uploadComment = (item) => {
         })
 
         dispatch({type: 'GET_POSTS', payload:array})
+    }
+}
+
+export const getFeedPosts = (numberOfPosts) => {
+    return async (dispatch, getState) => {
+
+        const { post, user } = getState()
+
+        const posts = await db.collection('posts').where('whosFeed', 'array-contains', user.uid).limit(numberOfPosts).get()
+
+        let array = []
+        posts.forEach(post => {
+            array.push(post.data())
+        })
+
+        dispatch({type:'GET_FEED_POSTS', payload: array})
     }
 }
 
