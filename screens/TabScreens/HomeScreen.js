@@ -26,9 +26,9 @@ class HomeScreen extends React.Component {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
             <View style={{height:60, marginTop:10, width:screenWidth, borderBottomColor:'black', borderBottomWidth:10, justifyContent: 'space-between', flexDirection: 'row'}}>
-            <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 30}}>Starter</Text>
+            <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 10}}>Starter</Text>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Post')}  style={{width:screenWidth, alignItems: 'center', flexDirection: 'row'}}>
-                    <View style={{width:40, height:40, borderRadius:40/2, backgroundColor:'#007aff', marginLeft: 190, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{width:40, height:40, borderRadius:40/2, backgroundColor:'#007aff', marginLeft: 210, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{color:'white', fontSize:25}}>+</Text>
                     </View>
               </TouchableOpacity>
