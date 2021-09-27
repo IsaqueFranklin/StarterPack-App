@@ -8,6 +8,8 @@ import PostCheckout from '../screens/TabScreens/upload/PostCheckout'
 import TextCheckout from '../screens/TabScreens/upload/TextCheckout'
 import ProfileScreen from '../screens/TabScreens/ProfileScreen'
 import OnePost from '../screens/TabScreens/OnePost'
+import EditProfile from '../screens/TabScreens/EditProfile'
+
 
 import { uploadPost, uploadTextPost, getPosts, getFeedPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
@@ -67,6 +69,15 @@ class MyStack extends React.Component{
                   <FontAwesome name='check' color={'blue'} size={25} style={{top:2}} />
               </TouchableOpacity>
           )
+          }} />
+          <Stack.Screen name="EditProfile" component={EditProfile} 
+          options={{
+            headerTitle: 'Editar perfil',
+            headerStyle: {
+              backgroundColor: '#1a1a1a', borderWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: '#1a1a1a' }
           }} />
           <Stack.Screen name="TextCheckout" component={TextCheckout} 
         options={{

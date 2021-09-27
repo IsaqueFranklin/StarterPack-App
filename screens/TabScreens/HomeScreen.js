@@ -16,15 +16,22 @@ const screenHeight = Dimensions.get('window').height
 class HomeScreen extends React.Component {
 
   componentDidMount = () => {
-    this.props.getFeedPosts(100);
+    this.props.getFeedPosts();
     if (this.props.user.uid !== undefined) {
       this.props.getUser(this.props.user.uid, 'GET_PROFILE')
     }
+  }
+
+  getFeedPosts = () => {
+    this.props.getFeedPosts()
   }
   
   render(){
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
+        {(this.props.post.feedposts == undefined || this.props.post.feedposts == "" || this.props.post.feedposts == null) ? this.getFeedPosts()
+        :
+            <>
             <View style={{height:60, marginTop:10, width:screenWidth, borderBottomColor:'black', borderBottomWidth:10, justifyContent: 'space-between', flexDirection: 'row'}}>
             <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 10}}>Starter</Text>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Post')}  style={{width:screenWidth, alignItems: 'center', flexDirection: 'row'}}>
@@ -50,6 +57,8 @@ class HomeScreen extends React.Component {
               profile={this.props.profile} />
             )}
             />
+            </>
+        }
       </SafeAreaView>
     );
   }

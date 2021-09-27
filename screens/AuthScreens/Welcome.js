@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions } from 'react-native';
 import firebase from 'firebase/app'
+import { getFeedPosts } from '../../actions/post'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -17,6 +18,7 @@ class Welcome extends React.Component {
                 this.props.getUser(user.uid)
                 if(this.props.user !== null){
                     this.props.navigation.navigate('StackNavigator')
+                    this.props.getFeedPosts(50);
                     this.props.navigation.reset({
                         index:0,
                         routes: [{ name: 'StackNavigator'}]
@@ -39,7 +41,7 @@ class Welcome extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({getUser}, dispatch)
+    return bindActionCreators({getUser, getFeedPosts}, dispatch)
 }
 
 const mapStateToProps = (state) => {

@@ -126,3 +126,22 @@ export const unFollowUser = (userToFollow) => {
         }
     }
 }
+
+export const editProfile = () => {
+    return async ( dispatch, getState ) => {
+        try {
+            const { uid } = getState().user
+
+            const data = {
+                username: username,
+                bio: '',
+                photo: photo,
+            }
+
+            db.collection('users').doc(uid).update(data)
+            dispatch({type: 'LOGIN', payload: user})
+        } catch(e) {
+            alert(e)
+        }
+    }
+}

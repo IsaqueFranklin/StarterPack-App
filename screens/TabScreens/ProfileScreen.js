@@ -89,7 +89,7 @@ class ProfileScreen extends React.Component {
             </Text>
             <View style={{borderBottomColor:'black', borderBottomWidth:10, height:100, width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
                 <TouchableOpacity 
-                onPress={() => this.follow()}
+                onPress={() => this.props.navigation.navigate('EditProfile')}
                 style={{width: '65%', height: 35, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', borderWidth:1, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125}}>
                     <Text style={{margin:5, color: 'white'}}>Edit profile</Text>
                 </TouchableOpacity>
