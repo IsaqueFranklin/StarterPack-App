@@ -43,8 +43,8 @@ const post = (state = {}, action) => {
             return {...state, onePost: action.payload}
         case 'GET_SAVED_POSTS':
             return {...state, saved_feed: action.payload}
-        case 'GET_NOTIFICATIONS':
-            return {...state, notifications: action.payload}
+        case 'GET_NOTIFY':
+            return {...state, notify: action.payload}
         default:
             return state
     }

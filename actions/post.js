@@ -213,19 +213,19 @@ export const getSavedPosts = () => {
     }
 }
 
-export const getNotifications = () => {
+export const getNotifications = (uid) => {
     return async (dispatch, getState) => {
 
         const { user } = getState()
 
-        const notifications = await db.collection('users').doc(user.uid).orderBy('date', 'desc').get()
+        const notify = await db.collection('users').doc(uid).get()
 
         let array = []
-        notifications.forEach(post => {
+        notify.forEach(post => {
             array.push(post.data())
         })
 
-        dispatch({type: 'GET_NOTIFICATIONS', payload:array})
+        dispatch({type: 'GET_NOTIFY', payload: array})
     }
 }
 
@@ -307,6 +307,20 @@ export const getPost = (item) => {
     return async (dispatch, getState) => {
         try{
             db.collection('posts').where('id', '==', item.id).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  dispatch({type: 'GET_POST', payload: {...doc.data(), id: doc.id}});
+                });
+            })
+        } catch(e){
+            alert(e)
+        }
+    }
+}
+
+export const getPost2 = (item) => {
+    return async (dispatch, getState) => {
+        try{
+            db.collection('posts').where('id', '==', item).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                   dispatch({type: 'GET_POST', payload: {...doc.data(), id: doc.id}});
                 });
