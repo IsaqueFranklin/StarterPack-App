@@ -18,6 +18,10 @@ export function updatePhoto(input){
     return {type: 'UPDATE_PHOTO', payload: input}
 }
 
+export const updateBio = (input) => {
+    return {type: 'UPDATE_BIO', payload: input}
+}
+
 export function signup(){
     return async (dispatch, getState) => {
         try {
@@ -130,15 +134,15 @@ export const unFollowUser = (userToFollow) => {
 export const editProfile = () => {
     return async ( dispatch, getState ) => {
         try {
-            const { uid } = getState().user
+            const { user, post } = getState()
 
             const data = {
-                username: username,
-                bio: '',
-                photo: photo,
+                username: user.username,
+                bio: user.bio,
+                photo: user.photo,
             }
 
-            db.collection('users').doc(uid).update(data)
+            db.collection('users').doc(user.uid).update(data)
             dispatch({type: 'LOGIN', payload: user})
         } catch(e) {
             alert(e)

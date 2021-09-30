@@ -22,6 +22,8 @@ const user = (state = {}, action) => {
             return {...state, username:action.payload.toLowerCase().replace(' ', '_')}
         case 'UPDATE_PHOTO':
             return {...state, photo: action.payload}
+        case 'UPDATE_BIO':
+            return {...state, bio: action.payload}
         default:
             return state
     }
@@ -41,6 +43,8 @@ const post = (state = {}, action) => {
             return {...state, onePost: action.payload}
         case 'GET_SAVED_POSTS':
             return {...state, saved_feed: action.payload}
+        case 'GET_NOTIFICATIONS':
+            return {...state, notifications: action.payload}
         default:
             return state
     }

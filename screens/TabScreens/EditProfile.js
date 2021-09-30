@@ -10,7 +10,7 @@ import * as Permissions from 'expo-permissions'
 import * as ImagePicker from 'expo-image-picker'
 
 import { uploadPhoto } from '../../actions/index'
-import { getUser, updatePhoto } from '../../actions/user'
+import { getUser, updatePhoto, updateUsername, updateBio, editProfile } from '../../actions/user'
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
@@ -35,6 +35,12 @@ export class EditProfile extends React.Component {
         }
     }
 
+    editProfile = () =>{
+        this.props.navigation.navigate('Profile')
+        //alert('posted')
+        this.props.editProfile()
+    }
+
 
   render(){
     return (
@@ -43,7 +49,7 @@ export class EditProfile extends React.Component {
                     {
                         (this.props.user.photo === undefined) ?
                         <TouchableOpacity 
-                        style={{marginTop: 60}}
+                        style={{marginTop: 20}}
                         onPress={() => this.openLibrary()}>
                             <Image 
                             source={require('../../assets/images/image.jpg')} 
@@ -51,7 +57,7 @@ export class EditProfile extends React.Component {
                         </TouchableOpacity>
                         : 
                         <TouchableOpacity 
-                        style={{marginTop: 60}}
+                        style={{marginTop: 20}}
                         onPress={() => this.openLibrary()}>
                             <Image 
                             source={{uri:this.props.user.photo}} 
@@ -60,11 +66,25 @@ export class EditProfile extends React.Component {
                     }
 
                 <View style={{marginTop: 30, alignItems: 'center'}}>
-                    <Text style={{fontSize:18, marginVertical: 0, color: 'white'}}>{this.props.user.username}</Text>
-                    <Text style={{fontSize:15, marginVertical: 20, color: 'white'}}>{this.props.user.bio}</Text>
+                    
+                        <TextInput 
+                        placeholder={'Seu novo nome de usuário'} 
+                        placeholderTextColor={'white'}
+                        onChangeText={input=> this.props.updateUsername(input)}
+                        value={this.props.user.username}
+                        style={{backgroundColor: '#0a0a0a', color: '#fff', marginBottom: 10, width: '95%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
+                        />
+                    
+                        <TextInput 
+                        placeholder={'Sua nova bio'} 
+                        placeholderTextColor={'white'}
+                        onChangeText={input=> this.props.updateBio(input)}
+                        value={this.props.user.bio}
+                        style={{backgroundColor: '#0a0a0a', color: '#fff', marginBottom: 20, width: '95%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
+                        />
                 </View>
 
-                <TouchableOpacity style={{width: '65%', height: 35, backgroundColor: '#007aff', justifyContent: 'center', alignItems: 'center', borderRadius:8, marginTop: 20}}>
+                <TouchableOpacity onPress={()=> this.editProfile()} style={{width: '65%', height: 35, backgroundColor: '#007aff', justifyContent: 'center', alignItems: 'center', borderRadius:8, marginTop: 20}}>
                     <Text style={{fontWeight: 'bold', fontSize:15, margin:5, color: 'white'}}>Salvar</Text>
                 </TouchableOpacity>
             </View>
@@ -75,7 +95,7 @@ export class EditProfile extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getUser, uploadPhoto, updatePhoto }, dispatch)
+    return bindActionCreators({ getUser, uploadPhoto, updatePhoto, updateUsername, updateBio, editProfile }, dispatch)
 }
 
 const mapStateToProps = (state) => {

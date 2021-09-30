@@ -213,6 +213,22 @@ export const getSavedPosts = () => {
     }
 }
 
+export const getNotifications = () => {
+    return async (dispatch, getState) => {
+
+        const { user } = getState()
+
+        const notifications = await db.collection('users').doc(user.uid).orderBy('date', 'desc').get()
+
+        let array = []
+        notifications.forEach(post => {
+            array.push(post.data())
+        })
+
+        dispatch({type: 'GET_NOTIFICATIONS', payload:array})
+    }
+}
+
 export const likePost = (post) => {
     return async (dispatch, getState) => {
         try {
