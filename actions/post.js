@@ -199,7 +199,7 @@ export const getSavedPosts = () => {
     return async (dispatch, getState) => {
         try {
             const { uid } = getState().user
-            const posts = await db.collection('posts').orderBy('date', 'desc').where('savedBy', 'array-contains', uid).get()
+            const posts = await db.collection('posts').where('savedBy', 'array-contains', uid).get()
 
             let array = []
             posts.forEach(post => {

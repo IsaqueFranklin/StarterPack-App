@@ -45,6 +45,8 @@ const post = (state = {}, action) => {
             return {...state, saved_feed: action.payload}
         case 'GET_NOTIFY':
             return {...state, notify: action.payload}
+        case 'USER_DETAILS':
+            return {...state, user_details: action.payload}
         default:
             return state
     }

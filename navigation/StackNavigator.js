@@ -9,7 +9,7 @@ import TextCheckout from '../screens/TabScreens/upload/TextCheckout'
 import ProfileScreen from '../screens/TabScreens/ProfileScreen'
 import OnePost from '../screens/TabScreens/OnePost'
 import EditProfile from '../screens/TabScreens/EditProfile'
-
+import SavedPosts from '../screens/TabScreens/SavedPosts'
 
 import { uploadPost, uploadTextPost, getPosts, getFeedPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
@@ -40,6 +40,14 @@ class MyStack extends React.Component{
       <Stack.Navigator>
         <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}} />
         <Stack.Screen name="OnePost" component={OnePost} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#1a1a1a', borderWidth: 0
+          },
+          headerTintColor: '#fff',
+          cardStyle: { backgroundColor: '#1a1a1a' }
+        }} />
+        <Stack.Screen name="SavedPosts" component={SavedPosts} 
         options={{
           headerStyle: {
             backgroundColor: '#1a1a1a', borderWidth: 0

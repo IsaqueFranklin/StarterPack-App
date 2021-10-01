@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, TextInput, TouchableOpacity, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, FlatList, TextInput, TouchableOpacity, View, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { bindActionCreators } from 'redux';
@@ -25,6 +25,10 @@ class HomeScreen extends React.Component {
   getFeedPosts = () => {
     this.props.getFeedPosts()
   }
+
+  savedPosts = () => {
+    this.props.navigation.navigate('SavedPosts')
+  }
   
   render(){
     return (
@@ -34,8 +38,11 @@ class HomeScreen extends React.Component {
             <>
             <View style={{height:60, marginTop:10, width:screenWidth, borderBottomColor:'black', borderBottomWidth:10, justifyContent: 'space-between', flexDirection: 'row'}}>
             <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 10}}>Starter</Text>
+            <TouchableOpacity onPress={()=> this.savedPosts()} style={{}}>
+                <Image source={require('../../assets/images/save.png')} style={{width: 20, height:20, marginTop:8, marginLeft: 15}} />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Post')}  style={{width:screenWidth, alignItems: 'center', flexDirection: 'row'}}>
-                    <View style={{width:40, height:40, borderRadius:40/2, backgroundColor:'#007aff', marginLeft: 210, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{width:40, height:40, borderRadius:40/2, backgroundColor:'#007aff', marginLeft: 190, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{color:'white', fontSize:25}}>+</Text>
                     </View>
               </TouchableOpacity>

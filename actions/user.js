@@ -143,7 +143,21 @@ export const editProfile = () => {
             }
 
             db.collection('users').doc(user.uid).update(data)
+
             dispatch({type: 'LOGIN', payload: user})
+        } catch(e) {
+            alert(e)
+        }
+    }
+}
+
+export const userDetails = (item) => {
+    return async ( dispatch, getState ) => {
+        try {
+           
+            const details = db.collection('users').doc(item).get()
+
+            dispatch({type: 'USER_DETAILS', payload: details})
         } catch(e) {
             alert(e)
         }

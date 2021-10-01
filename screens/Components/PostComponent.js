@@ -67,8 +67,8 @@ export default class PostComponent extends React.Component {
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileScreen', this.props.item.uid)} 
                 style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row',}}>
-                    <Image source={{uri: this.props.user?.photo}} style={{width:40, height:40, borderRadius:20, marginLeft:0}} />
-                    <Text style={{fontWeight: '400', fontSize:16, color: 'white', marginHorizontal: 20, }}>{this.props.user?.username}</Text>
+                    <Image source={{uri: this.props.item?.photo}} style={{width:40, height:40, borderRadius:20, marginLeft:0}} />
+                    <Text style={{fontWeight: '400', fontSize:16, color: 'white', marginHorizontal: 20, }}>{this.props.item?.username}</Text>
             </TouchableOpacity>   
             </View>
             <View>
