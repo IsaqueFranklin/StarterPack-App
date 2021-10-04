@@ -29,8 +29,7 @@ class Signup extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text style={{fontSize:35, fontFamily: 'logo-font', marginTop: 0, color: '#007aff'}}>StarterPack</Text>
-        <Text style={{color: '#007aff'}}>Sign Up</Text>
+        <Text style={{fontSize:35, fontFamily: 'logo-font', marginTop: 0, color: '#007aff'}}>Starter</Text>
 
           <View style={{width:screenWidth*0.9, marginTop:15,}}>
               <Text style={{left:5, color: 'white'}}>Username</Text>

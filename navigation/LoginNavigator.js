@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 export default function App() {
 
     let [fontsLoaded] = useFonts({
-        'logo-font': require('../assets/fonts/Handlee-Regular.ttf')
+        'logo-font': require('../assets/fonts/feeling-passionate-regular.ttf')
     });
 
     if (!fontsLoaded){

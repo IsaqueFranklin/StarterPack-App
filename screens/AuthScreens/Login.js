@@ -15,8 +15,8 @@ class Login extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text style={{fontSize:35, fontFamily: 'logo-font', marginTop: 170, color: '#007aff'}}>StarterPack</Text>
-        <View style={{top:100}}>
+        <Text style={{fontSize:35, fontFamily: 'logo-font', marginTop: 170, color: '#007aff'}}>Starter</Text>
+        <View style={{top:60}}>
           <View style={{width:screenWidth*0.9, marginTop:15,}}>
               <Text style={{left:10, color: 'white'}}>Email</Text>
           </View>
