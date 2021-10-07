@@ -33,7 +33,21 @@ class HomeScreen extends React.Component {
   render(){
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
-        {(this.props.post.feedposts == undefined || this.props.post.feedposts == "" || this.props.post.feedposts == null) ? this.getFeedPosts()
+        {(this.props.post.feedposts == undefined || this.props.post.feedposts == "" || this.props.post.feedposts == null) ? 
+        <>
+        {this.getFeedPosts()}
+        <View style={{marginTop:0, width:screenWidth, borderBottomColor:'black', borderBottomWidth:10, justifyContent: 'space-between', flexDirection: 'row'}}>
+        <Text style={{fontSize:25, fontFamily: 'logo-font', color: '#007aff', marginLeft: 10}}>Starter</Text>
+        <TouchableOpacity onPress={()=> this.savedPosts()} style={{}}>
+            <Image source={require('../../assets/images/save.png')} style={{width: 20, height:20, marginTop:8, marginLeft: 15}} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Post')}  style={{width:screenWidth, alignItems: 'center', flexDirection: 'row'}}>
+                <View style={{width:40, height:40, borderRadius:40/2, backgroundColor:'#007aff', marginLeft: 190, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={{color:'white', fontSize:25}}>+</Text>
+                </View>
+          </TouchableOpacity>
+        </View>
+        </>
         :
             <>
             <View style={{height:60, marginTop:10, width:screenWidth, borderBottomColor:'black', borderBottomWidth:10, justifyContent: 'space-between', flexDirection: 'row'}}>
