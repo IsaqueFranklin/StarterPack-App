@@ -27,6 +27,16 @@ class NotifyScreen extends React.Component {
     this.props.navigation.navigate('OnePost')
   }
 
+  state = { 
+    isFetching: false,
+  }
+
+  onRefresh() {
+    this.setState({isFetching: true,});
+    this.props.getNotifications(this.props.user.uid)
+    this.setState({ isFetching: false })
+  }
+
   render(){
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white',  backgroundColor: '#1a1a1a'}}>
@@ -38,7 +48,9 @@ class NotifyScreen extends React.Component {
                     </View>
               </TouchableOpacity>
             </View>
-        <ScrollView>
+        <ScrollView
+        onRefresh={() => this.onRefresh()}
+        refreshing={this.state.isFetching}>
             {
                     this.props.user.notifications.map((e)=>
                         <View>

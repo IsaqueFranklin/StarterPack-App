@@ -22,6 +22,8 @@ export class OnePost extends React.Component {
         this.props.uploadComment(item)
         this.props.getPost(this.props.post.onePost)
         //this.props.getPosts()
+        this.props.updateDescription()
+        this.props.navigation.navigate('OnePost')
     }
 
 
@@ -45,15 +47,15 @@ export class OnePost extends React.Component {
             />
             <View style={{flex: 1, alignItems: 'center',  backgroundColor: '#1a1a1a', flexDirection: 'row', borderBottomColor: 'black', borderBottomWidth: 10}}>
                 <TextInput 
-                placeholder={'Type in your description here :)'} 
+                placeholder={'Comentar'} 
                 placeholderTextColor={'white'}
                 onChangeText={input=> this.props.updateDescription(input)}
                 value={this.props.post.description}
                 style={{backgroundColor: '#0a0a0a', color: '#fff', width: '70%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:10, borderRadius:10}}
                 />
-                <TouchableOpacity style={{flexDirection: 'row'}}
+                <TouchableOpacity style={{width: '20%', height: 35, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', borderWidth:1, borderColor: 'grey', borderRadius:7, margin:screenWidth*0.0125, marginBottom:10, marginRight:10}}
                     onPress={()=> this.uploadComment(this.props.post.onePost)}>
-                    <Text style={{color: 'blue', fontWeight: 'bold', fontSize:22, marginHorizontal:5, bottom:0}}>Post</Text>
+                    <Text style={{fontSize:18, marginHorizontal:5, bottom:0, color: 'white'}}>Post</Text>
                 </TouchableOpacity>
             </View>
 

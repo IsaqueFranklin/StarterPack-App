@@ -11,7 +11,7 @@ import OnePost from '../screens/TabScreens/OnePost'
 import EditProfile from '../screens/TabScreens/EditProfile'
 import SavedPosts from '../screens/TabScreens/SavedPosts'
 
-import { uploadPost, uploadTextPost, getPosts, getFeedPosts } from '../actions/post'
+import { uploadPost, updateDescription, uploadTextPost, getPosts, getFeedPosts } from '../actions/post'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { getUser } from '../actions/user'
@@ -26,6 +26,7 @@ class MyStack extends React.Component{
     //alert('posted')
     this.props.uploadPost()
     this.props.getFeedPosts()
+    this.props.updateDescription()
   }
 
   uploadTextPost = () =>{
@@ -33,6 +34,7 @@ class MyStack extends React.Component{
     //alert('posted')
     this.props.uploadTextPost()
     this.props.getFeedPosts()
+    this.props.updateDescription()
   }
 
     render() {
@@ -109,7 +111,7 @@ class MyStack extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getUser, uploadPost, uploadTextPost, getPosts, getFeedPosts }, dispatch)
+  return bindActionCreators({ getUser, uploadPost, updateDescription, uploadTextPost, getPosts, getFeedPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {

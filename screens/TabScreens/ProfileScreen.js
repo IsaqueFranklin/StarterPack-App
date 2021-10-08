@@ -22,6 +22,19 @@ class ProfileScreen extends React.Component {
     }
   }
 
+  state = { 
+    isFetching: false,
+  }
+
+  onRefresh() {
+    this.setState({isFetching: true,});
+    const { params } = this.props.route
+    if (params !== undefined) {
+      this.props.getUser(params, 'GET_PROFILE')
+    }
+    this.setState({ isFetching: false })
+  }
+
   follow = () => {
     this.props.followUser(this.props.profile.uid)
   }
@@ -52,7 +65,8 @@ class ProfileScreen extends React.Component {
             </TouchableOpacity>
         </View>
       
-      <ScrollView style={{flex: 1, backgroundColor: '#1a1a1a'}}>
+      <ScrollView style={{flex: 1, backgroundColor: '#1a1a1a'}} onRefresh={() => this.onRefresh()}
+            refreshing={this.state.isFetching}>
       <SafeAreaView style={{flex: 1, alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
             <Image source={{uri: this.props.user?.photo}} style={{width:screenWidth*.3, height:screenWidth*.3, borderRadius: screenWidth*.15}} />
             <Text style={{fontSize:18, marginVertical: 20, color: 'white'}}>{this.props.user?.username}</Text>
@@ -96,6 +110,8 @@ class ProfileScreen extends React.Component {
             </View>
 
             <FlatList
+            onRefresh={() => this.onRefresh()}
+            refreshing={this.state.isFetching}
             data={this.props.user.posts}
             keyExtractor={(item) => JSON.stringify(item.date) }
             style={{flex: 1,}}
@@ -181,6 +197,8 @@ class ProfileScreen extends React.Component {
             }
 
           <FlatList
+          onRefresh={() => this.onRefresh()}
+          refreshing={this.state.isFetching}
           data={this.props.profile.posts}
           keyExtractor={(item) => JSON.stringify(item.date) }
           style={{flex: 1,}}

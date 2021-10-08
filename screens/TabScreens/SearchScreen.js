@@ -21,6 +21,16 @@ class SearchScreen extends React.Component {
       this.props.getUser(this.props.user.uid, 'GET_PROFILE')
     }
   }
+
+  state = { 
+    isFetching: false,
+  }
+
+  onRefresh() {
+    this.setState({isFetching: true,});
+    this.props.getPosts(50)
+    this.setState({ isFetching: false })
+  }
   
   render(){
     return (
@@ -30,7 +40,8 @@ class SearchScreen extends React.Component {
             
             </View>
             <FlatList 
-            refreshing={true}
+            onRefresh={() => this.onRefresh()}
+            refreshing={this.state.isFetching}
             data={this.props.post.feed}
             keyExtractor={(item) => JSON.stringify(item.uid)}
             renderItem={({item}) => (

@@ -22,6 +22,16 @@ class HomeScreen extends React.Component {
     }
   }
 
+  state = { 
+    isFetching: false,
+  }
+
+  onRefresh() {
+    this.setState({isFetching: true,});
+    this.props.getFeedPosts();
+    this.setState({ isFetching: false })
+  }
+
   getFeedPosts = () => {
     this.props.getFeedPosts()
   }
@@ -32,7 +42,7 @@ class HomeScreen extends React.Component {
   
   render(){
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white', alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
         {(this.props.post.feedposts == undefined || this.props.post.feedposts == "" || this.props.post.feedposts == null) ? 
         <>
         {this.getFeedPosts()}
@@ -46,6 +56,10 @@ class HomeScreen extends React.Component {
                     <Text style={{color:'white', fontSize:25}}>+</Text>
                 </View>
           </TouchableOpacity>
+        </View>
+
+        <View style={{marginTop: 300}}>
+          <Text style={{fontWeight: 'bold', fontSize:25, color: 'white'}}>Sem posts ainda :(</Text>
         </View>
         </>
         :
@@ -62,7 +76,8 @@ class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <FlatList 
-            refreshing={true}
+            onRefresh={() => this.onRefresh()}
+            refreshing={this.state.isFetching}
             data={this.props.post.feedposts}
             keyExtractor={(item) => JSON.stringify(item.uid)}
             renderItem={({item}) => (
