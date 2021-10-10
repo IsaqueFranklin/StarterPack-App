@@ -229,14 +229,30 @@ export const getNotifications = (uid) => {
     }
 }
 
-export const likePost = (post) => {
+export const likePost = (item) => {
     return async (dispatch, getState) => {
         try {
             const { uid, username, photo } = getState().user
 
-            db.collection('posts').doc(post.id).update({
+            db.collection('posts').doc(item.id).update({
                 likes: firebase.firestore.FieldValue.arrayUnion(uid)
             })
+
+            /*db.collection('users').doc(item.uid).get().then(doc => {
+                if(doc.exists){
+                  const previous = doc.data().notifications
+                  const comment = {
+                    by: { uid: uid, username: username, photo: photo },
+                    id: id,
+                    created: new Date().getTime(),
+                    postId: item.id,
+                    comment: username+" curtiu seu post.",
+                    visto: false,
+                  }
+                  const updatedComments = [...previous, comment]
+                  db.collection('users').doc(item.uid).update({ notifications: updatedComments })
+                }
+            })*/
         } catch (err) {
             alert(err)
         }
