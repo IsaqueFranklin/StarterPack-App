@@ -16,11 +16,13 @@ class PostCheckout extends React.Component {
     return (
       <View style={{flex: 1, alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
           <TextInput 
+          multiline
+          numberOfLines={8}
           placeholder={'Type in your description here :)'} 
           placeholderTextColor={'white'}
           onChangeText={input=> this.props.updateDescription(input)}
           value={this.props.post.description}
-          style={{backgroundColor: '#0a0a0a', color: '#fff',  marginTop: 100, marginBottom: 50, width: '95%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
+          style={{backgroundColor: '#0a0a0a', color: '#fff',  marginTop: 50, marginBottom: 50, width: '95%', fontSize:20, paddingVertical:10, paddingHorizontal:15, margin:20, borderRadius:10}}
           />
 
           <View>

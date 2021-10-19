@@ -16,6 +16,8 @@ class TextCheckout extends React.Component {
     return (
       <View style={{flex: 1, alignItems: 'center',  backgroundColor: '#1a1a1a'}}>
           <TextInput 
+          multiline
+          numberOfLines={10}
           placeholder={'Type in your description here :)'} 
           placeholderTextColor={'white'}
           onChangeText={input=> this.props.updateDescription(input)}
